@@ -1,52 +1,55 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-	</view>
+    <view class="content">
+        <view class="text-area" v-if="!showEditor">
+            <view>简介：</text>
+                <view auto-height v-html="html" class="html"></view>
+                <button @tap="openEditor">编辑</button>
+            </view>
+        </view>
+        <meditor v-else class="editor" @cancel="hideEditor" @save="saveEditor" :html="html"
+            :imageUploader="uploadImg" :muiltImage="true"></meditor>
+    </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
+    import meditor from '@/components/editor/editor.vue';
+    export default {
+        components: {
+            meditor
+        },
+        data() {
+            return {
+                showEditor:false,
+                html: '<b style="color:#ff0000">Hello</b>'
+            }
+        },
+        methods: {
+            openEditor: function() {
+                this.showEditor = true
+            },
+            hideEditor: function() {
+                this.showEditor = false
+            },
+            saveEditor: function(e) {
+                this.html = e.html
+                this.hideEditor()
+            },
+            uploadImg: function(img, callback) {
+                //上传图片逻辑,将图片链接传给回调函数
+                callback(img)
+            }
+        }
+    }
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+    view{
+        box-sizing: border-box;
+    }
+    .html{
+        width: 100%;
+    }
+    .editor{
+       width: 100%;
+    }
 </style>

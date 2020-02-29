@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import meditor from '@/components/editor/editor.vue';
+    import meditor from '@/components/robin-editor/editor.vue';
     export default {
         components: {
             meditor

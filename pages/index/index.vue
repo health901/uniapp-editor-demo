@@ -48,6 +48,7 @@
     }
     .html{
         width: 100%;
+        word-break: break-all;
     }
     .editor{
        width: 100%;

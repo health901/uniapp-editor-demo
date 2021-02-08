@@ -9,17 +9,13 @@
                 <button @tap="changeHtml(2)" style="margin-top: 10rpx;">设置HTML-2</button>
             </view>
         </view>
-        <meditor v-else class="editor" @cancel="hideEditor" @save="saveEditor" v-model="html"
-            :imageUploader="uploadImg" :muiltImage="true"></meditor>
+        <robin-editor v-else class="editor" @cancel="hideEditor" @save="saveEditor" v-model="html"
+            :imageUploader="uploadImg" :muiltImage="true"></robin-editor>
     </view>
 </template>
 
 <script>
-    import meditor from '@/components/robin-editor/editor.vue';
     export default {
-        components: {
-            meditor
-        },
         data() {
             return {
                 showEditor:false,
